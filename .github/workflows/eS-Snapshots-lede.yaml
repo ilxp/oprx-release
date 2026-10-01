@@ -76,7 +76,14 @@ jobs:
         token: ${{ secrets.workflow_token }}
         ref: main
         path: oprx-es
-
+        
+    - name: Move scripts to /builder
+      run: |
+        mkdir -p /builder/es-scripts
+        cp -a "${GITHUB_WORKSPACE}/es-scripts/." /builder/es-scripts/
+        ls -la /builder/es-scripts/
+         ls -la /builder/es-scripts/openwrt/scripts/ 2>/dev/null || true
+         
     - name: Set date
       id: date
       run: |
@@ -99,7 +106,7 @@ jobs:
         #export ENABLE_MOLD=y
         #export ENABLE_UHTTPD=y
 
-        cd "${GITHUB_WORKSPACE}/oprx-es/openwrt"
+        cd /builder/es-scripts/openwrt
         chmod +x build-oprx.sh
         bash ./build-oprx.sh ${{ matrix.tag.type }} ${{ matrix.model }}
 
