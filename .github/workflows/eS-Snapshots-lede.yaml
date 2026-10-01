@@ -99,7 +99,7 @@ jobs:
         #export ENABLE_MOLD=y
         #export ENABLE_UHTTPD=y
 
-        cd /builder/oprx-es/openwrt
+        cd "${GITHUB_WORKSPACE}/oprx-es/openwrt"
         chmod +x build-oprx.sh
         bash ./build-oprx.sh ${{ matrix.tag.type }} ${{ matrix.model }}
 
