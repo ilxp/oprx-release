@@ -75,7 +75,7 @@ jobs:
         repository: ilxp/eS_lede_build_script
         token: ${{ secrets.workflow_token }}
         ref: main
-        path: /builder/oprx-es
+        path: oprx-es
 
     - name: Set date
       id: date
